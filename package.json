@@ -6,19 +6,22 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "axios": "^0.20.0",
     "express": "^4.17.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "serialize-javascript": "^5.0.1"
   },
   "scripts": {
-    "dev:build-server": "webpack --config webpack.server.js --mode=development -w",
-    "dev:start": "node ./server-build/index.js",
-    "dev": "npm-run-all --parallel build dev:*",
-    "start": "react-scripts start",
+    "clean": "rimraf build server-build",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build-server": "webpack --config webpack.server.js",
+    "dev:build-server": "webpack --config webpack.server.js -w",
+    "dev:start": "nodemon --watch server-build --exec \"node server-build/index.js\"",
+    "dev": "npm-run-all clean build build-server --parallel dev:*"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -41,6 +44,7 @@
     "@babel/preset-react": "^7.10.4",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.3.0",
+    "filemanager-webpack-plugin": "^3.0.0-alpha.1",
     "mini-css-extract-plugin": "^0.11.3",
     "nodemon": "^2.0.4",
     "npm-run-all": "^4.1.5",

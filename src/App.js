@@ -1,11 +1,13 @@
 import React from 'react';
-import logo from './logo.svg';
+import { renderRoutes } from 'react-router-config';
+import { NavLink } from 'react-router-dom';
 import './App.css';
-import Home from './Pages/Home';
+import logo from './logo.svg';
 
-function App() {
+function App({ route }) {
   return (
     <div className="App">
+      {renderRoutes(route.routes)}
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -17,8 +19,19 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Home course={'React'} />
+          Learn React
         </a>
+        <ul>
+          <li>
+            <NavLink to="/">Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/todos">Todos</NavLink>
+          </li>
+          <li>
+            <NavLink to="/posts">Posts</NavLink>
+          </li>
+        </ul>
       </header>
     </div>
   );

@@ -1,10 +1,13 @@
 const path = require('path');
 const webpackNodeExternals = require('webpack-node-externals');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const FileManagerPlugin = require('filemanager-webpack-plugin');
 
 module.exports = {
     entry: './server/index.js',
     target: 'node',
+    // devtool: 'source-map',
+    mode: "development",
     externals: [webpackNodeExternals()],
     module: {
         rules: [
@@ -48,6 +51,14 @@ module.exports = {
     plugins: [
         new MiniCssExtractPlugin({
             ignoreOrder: false
+        }),
+        new FileManagerPlugin({
+            onEnd: {
+                move: [{
+                    source: 'build/index.html',
+                    destination: 'server-build/index.html'
+                }]
+            }
         })
     ]
 }

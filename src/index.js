@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { renderRoutes } from 'react-router-config';
+import Routes from './Routes';
 
 ReactDOM.hydrate(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      {renderRoutes(Routes)}
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
